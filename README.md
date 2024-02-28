@@ -1,60 +1,40 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7871039&assignment_repo_type=AssignmentRepo)
-# NLP Project Template
-Template for the jupyter notebook to use in order to submit NLP Project
+# Project Steps
 
-## Folder Structure
-```
-Project.ipynb ── This is the only file that you need to work on and submit
-```
+## A) Data Collection
+We use beautifulsoup to write a script to download all movie scripts from IMSDB.
 
-## Prerequisites
-This repository requires that you have:-
-* [Python3+](https://www.python.org/downloads/)
-* [Numpy](https://numpy.org/install/)
-* [Matplotlib](https://matplotlib.org/users/installing.html)
-* [Jupyter Notebook](https://jupyter.org/install)
+## B) Data Preprocessing
+In this part, we will be cleaning the text files before extracting a list of words from them. The
+preprocessing pipeline includes at least 3 steps e.g. (removing spaces, removing stopwords, removing
+punctuation).
 
-### Installation of Prerequisites
-#### Easy way (More HD space, less hassle)
-Install [Anaconda](https://www.anaconda.com/products/individual) then just run Jupyter.
+## C) Feature Extraction
+In this part, we will make sure that each movie script has now been converted into a vector of filtered
+words.
 
-#### Hard way (Less HD space, more hassle)
-Install [Python3+](https://www.python.org/downloads/) 
+## D) VAD Vectorization
+Converting each movie script’s list of words into valence, arousal and dominance could be done manually
+using map() function or could be done using emotion() function using labMT’s builtin method. Since some of the words in the scripts do not have a
+corresponding value in the VAD dictionary, we can replace them with 0s. Finally, we now have 3 very
+large vectors, that consist of 0s and other values that were replaced from the VAD dictionary. We need
+to strip down all the 0s from the vectors and average them using windows of size 500. So every 500 (nonzero)
+values will be replaced with a single value that represents the average.
 
-Make sure Python and pip are added to environment variables
-![Python](https://bitsilla.com/wiki/lib/exe/fetch.php?w=600&tok=5a7732&media=images:py_setting_win.png)
+## E) Output
+Now that we have 3 vectors for every movie script. We plot all 3 vectors onto the same figure (using any 3
+different colors) and save that figure to a jpg file with the same name as the movie script. For instance,
+the corresponding figure for the movie “17 Again” would be “17 Again.jpg”
 
-From your Linux, Mac, or Windows terminal, verify that both are installed correctly.
-```sh
-$ python --version
-$ pip --version
-```
+# Samples
+## Dark City
+![Dark-Ciy](https://github.com/BasselSharaf/Movies-Sentiment-Analysis/assets/15571269/7cf20a95-ab49-4bf4-912b-7629ade53d16)
 
-Using the same terminal install numpy, matplotlib, pillow and notebook
-```sh
-$ pip install numpy matplotlib pillow notebook
-```
+## Halloween The Curse of Michael Myers
+![Halloween-The-Curse-of-Michael-Myers](https://github.com/BasselSharaf/Movies-Sentiment-Analysis/assets/15571269/86ca767a-0595-47d5-9ead-34a0e979fb90)
 
-#### Alternative way (Cloud but you have to upload the data)
-Create a New Notebook from here
-[Google Colab](https://colab.research.google.com)
+## Final Destination
+![Final-Desinaion](https://github.com/BasselSharaf/Movies-Sentiment-Analysis/assets/15571269/2ba0617d-ed42-4d04-b738-f73c2623cb2d)
 
-Upload the Data.zip folder
-```
-from google.colab import files
-uploaded = files.upload()
-```
+## Boogie Nights
+![Boogie-Nighs](https://github.com/BasselSharaf/Movies-Sentiment-Analysis/assets/15571269/3d2fa9bd-c67a-4caf-9e37-7e4ae8d6edf4)
 
-Extract the zipped folder into the cloud
-```
-!unzip [foldername].zip
-```
-
-## How To Run
-From your terminal, run this command then navigate to the Assignment.ipynb file
-```
-jupyter notebook
-```
-
-## License
-BSD 3-Clause "New" or "Revised" License
